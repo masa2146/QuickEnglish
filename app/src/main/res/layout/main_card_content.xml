@@ -1,39 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:bind= "http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="myModel"
             type="com.bulut.quicklyenglish.model.MainPageData" />
+
+        <variable
+            name="listener"
+            type="com.bulut.quicklyenglish.adapter.impl.OnItemClickListener" />
     </data>
 
-    <LinearLayout xmlns:android= "http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="3dp">
 
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:onClick="@{() -> listener.onItemClick(myModel)}"
+            app:cardCornerRadius="7dp"
+            card_view:cardElevation="10dp">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:weightSum="5">
 
+                <!--suppress AndroidUnknownAttribute -->
                 <ImageView
                     android:id="@+id/content_photo"
                     android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
                     android:contentDescription="@string/todo"
                     bind:imageResource="@{myModel.contentImage}" />
 
@@ -41,9 +50,7 @@
                     android:id="@+id/content_header"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/content_photo"
-                    android:layout_toRightOf="@+id/content_photo"
+                    android:layout_weight="1"
                     android:text="@={myModel.contextHeader}"
                     android:textSize="30sp" />
 
@@ -51,15 +58,10 @@
                     android:id="@+id/content_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/content_header"
-                    android:layout_toEndOf="@+id/content_photo"
-                    android:layout_toRightOf="@+id/content_photo"
+                    android:layout_weight="1"
                     android:text="@={myModel.contentText}" />
 
-            </RelativeLayout>
-
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
-
+    </RelativeLayout>
 </layout>

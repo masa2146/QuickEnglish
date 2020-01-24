@@ -2,8 +2,8 @@ package com.bulut.quicklyenglish.model;
 
 import android.widget.ImageView;
 
-import androidx.databinding.BaseObservable;
 import androidx.databinding.BindingAdapter;
+import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -18,9 +18,10 @@ public class MainPageData {
     private int contentImage;
     private String contextHeader;
     private String contentText;
+    private Fragment fragment;
 
     @BindingAdapter({"imageResource"})
-    public static void setImageViewResource(ImageView imageView, int resource){
+    public static void setImageViewResource(ImageView imageView, int resource) {
         imageView.setImageResource(resource);
     }
 
