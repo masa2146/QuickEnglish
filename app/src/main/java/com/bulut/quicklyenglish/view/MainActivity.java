@@ -1,7 +1,9 @@
 package com.bulut.quicklyenglish.view;
 
 import android.os.Bundle;
+import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +13,10 @@ import com.bulut.quicklyenglish.R;
 import com.bulut.quicklyenglish.adapter.MainPageAdapter;
 import com.bulut.quicklyenglish.databinding.ActivityMainBinding;
 import com.bulut.quicklyenglish.model.MainPageData;
+import com.bulut.quicklyenglish.model.grammar.retro._Adjectives;
+import com.bulut.quicklyenglish.model.news.retro._News;
+import com.bulut.quicklyenglish.util.ApiCalls;
+import com.bulut.quicklyenglish.util.ApiClient;
 import com.bulut.quicklyenglish.view.fragments.ChatBotFragment;
 import com.bulut.quicklyenglish.view.fragments.GrammarFragment;
 import com.bulut.quicklyenglish.view.fragments.ListeningFragment;
@@ -19,12 +25,18 @@ import com.bulut.quicklyenglish.view.fragments.VocabularyFragment;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 /**
  * @author fatih
  */
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getName();
+
+    ApiCalls apiCalls;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +61,43 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(mainPageAdapter);
 
+        apiCalls = ApiClient.getClient().create(ApiCalls.class);
+        Call<_Adjectives> call = apiCalls.getAdjectives(1);
+
+        call.enqueue(new Callback<_Adjectives>() {
+            @Override
+            public void onResponse(@NonNull Call<_Adjectives> call, @NonNull Response<_Adjectives> response) {
+                assert response.body() != null;
+                // System.out.println("RESPONSE gırdıı "+response.body().getContent().get(0).getContext_header());
+
+                // Log.e("ON_RESPONSE",response.message());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<_Adjectives> call, @NonNull Throwable t) {
+                // Log.e("HATA_VAR",t.getMessage());
+                //System.out.println("HATA VAR gırdıı");
+            }
+        });
+
+
+        Call<_News> call2 = apiCalls.getNews(1);
+
+        call2.enqueue(new Callback<_News>() {
+            @Override
+            public void onResponse(@NonNull Call<_News> call, @NonNull Response<_News> response) {
+                assert response.body() != null;
+                System.out.println("NEWSSSSSS ---- RESPONSE gırdıı " + response.body().getContent().get(0).getLevel_1().get(0).getTitle());
+
+                Log.e("ON_RESPONSE", response.message());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<_News> call, @NonNull Throwable t) {
+                Log.e("HATA_VAR", t.getMessage());
+                System.out.println("HATA VAR gırdıı");
+            }
+        });
 
     }
 }

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.bulut.quicklyenglish.R;
@@ -22,14 +23,14 @@ public class ChatBotFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_chat_bot, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState){
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
 
         Button btn = view.findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
