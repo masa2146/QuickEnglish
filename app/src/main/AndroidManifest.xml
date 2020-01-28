@@ -2,7 +2,7 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.bulut.quicklyenglish">
+    package="com.bulut.quickly">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true">
         <!--  android:usesCleartextTraffic="true"  Bu kısım kaldırılacak -->
 
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".english.view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
