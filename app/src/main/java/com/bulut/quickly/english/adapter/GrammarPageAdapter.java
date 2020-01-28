@@ -13,15 +13,13 @@ import com.bulut.quickly.databinding.CardGrammarContentBinding;
 import com.bulut.quickly.english.adapter.impl.OnItemClickListener;
 import com.bulut.quickly.english.model.adapter.GrammarPageData;
 
-import java.util.ArrayList;
-
 public class GrammarPageAdapter extends RecyclerView.Adapter<GrammarPageAdapter.GrammarPageViewHolder> implements OnItemClickListener {
 
-    private ArrayList<GrammarPageData> grammarPageData;
+    private GrammarPageData[] grammarPageData;
     private LayoutInflater layoutInflater;
     private Context context;
 
-    public void setGrammarPageData(ArrayList<GrammarPageData> grammarPageData) {
+    public void setGrammarPageData(GrammarPageData[] grammarPageData) {
         this.grammarPageData = grammarPageData;
         notifyDataSetChanged();
     }
@@ -43,13 +41,13 @@ public class GrammarPageAdapter extends RecyclerView.Adapter<GrammarPageAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull GrammarPageViewHolder holder, int i) {
-        holder.cardGrammarContentBinding.setModel(grammarPageData.get(i));
+        holder.cardGrammarContentBinding.setModel(grammarPageData[i]);
         holder.cardGrammarContentBinding.setListener(this);
     }
 
     @Override
     public int getItemCount() {
-        return grammarPageData != null ? grammarPageData.size() : 0;
+        return grammarPageData != null ? grammarPageData.length : 0;
     }
 
     @Override

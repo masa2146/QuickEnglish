@@ -2,6 +2,7 @@ package com.bulut.quickly.english.util;
 
 import androidx.annotation.NonNull;
 
+import com.bulut.quickly.english.constant.ResponseType;
 import com.bulut.quickly.english.util.impl.APICallBackListener;
 import com.bulut.quickly.english.util.impl.ApiCalls;
 
@@ -17,6 +18,8 @@ public class CallbackMethods<T> {
     private ResponseType responseType;
 
     private int page = 1;
+    private String url = "";
+
 
     public CallbackMethods(APICallBackListener<T> apiCallBackListener, ResponseType responseType) {
         this.apiCallBackListener = apiCallBackListener;
@@ -26,50 +29,25 @@ public class CallbackMethods<T> {
     @SuppressWarnings("unchecked")
     private void setResponseType(ResponseType responseType) {
         switch (responseType) {
-            case ADJECTIVES:
-                call = apiCalls.getAdjectives(page);
+            case GRAMMAR:
+                call = apiCalls.getGrammar(url,page);
                 break;
-            case ADVERBS:
-                call = apiCalls.getAdverbs(page);
+            case PODCAST_LEVEL:
+                call = apiCalls.getPodcastLevel(url,page);
                 break;
-            case NOUNS:
-                call = apiCalls.getNouns(page);
-                break;
-            case PREPOSITIONS:
-                call = apiCalls.getPrepositions(page);
-                break;
-            case PRONOUNS:
-                call = apiCalls.getPronouns(page);
-                break;
-            case VERBS:
-                call = apiCalls.getVerbs(page);
+            case PODCAST_VOA:
+                call = apiCalls.getPodcastVoa(url,page);
                 break;
             case NEWS:
-                call = apiCalls.getNews(page);
+                call = apiCalls.getNews(url,page);
                 break;
-            case PODCAST_LEVEL_1:
-                call = apiCalls.getPodcastLevel1(page);
-                break;
-            case PODCAST_LEVEL_2:
-                call = apiCalls.getPodcastLevel2(page);
-                break;
-            case PODCAST_LEVEL_3:
-                call = apiCalls.getPodcastLevel3(page);
-                break;
-            case PODCAST_LEVEL_BUSINESS:
-                call = apiCalls.getPodcastLevelBusiness(page);
-                break;
-            case PODCAST_VOA_1:
-                call = apiCalls.getPodcastVoa1(page);
-                break;
-            case PODCAST_VOA_2:
-                call = apiCalls.getPodcastVoa2(page);
-                break;
+
         }
     }
 
-    public void callData(int page) {
+    public void callData(String url ,int page) {
         this.page = page;
+        this.url = url;
         setResponseType(responseType);
         call.enqueue(new Callback<T>() {
 

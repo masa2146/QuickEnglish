@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.bulut.quickly.R;
 import com.bulut.quickly.english.model.podcast.retro._PodcastLevel;
 import com.bulut.quickly.english.util.CallbackMethods;
-import com.bulut.quickly.english.util.ResponseType;
+import com.bulut.quickly.english.constant.ResponseType;
 import com.bulut.quickly.english.util.impl.APICallBackListener;
 
 import retrofit2.Call;
@@ -40,7 +40,7 @@ public class PodcastLevelFragment extends Fragment implements APICallBackListene
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         CallbackMethods<_PodcastLevel> callbackMethods = new CallbackMethods<>(this, ResponseType.NEWS);
-        callbackMethods.callData(1);
+        callbackMethods.callData("",1);
     }
 
     @Override

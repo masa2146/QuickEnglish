@@ -6,12 +6,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     private static Retrofit retrofit = null;
-    private static String BaseURL = "http://192.168.2.7:8080/";
 
     public static Retrofit getClient(){
         if(retrofit== null){
+            String baseURL = "http://192.168.2.7:8080/";
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BaseURL)
+                    .baseUrl(baseURL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(new OkHttpClient())
                     .build();

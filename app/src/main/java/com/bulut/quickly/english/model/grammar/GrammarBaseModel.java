@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 @Data
-public abstract class GrammarBaseModel {
+public class GrammarBaseModel {
 
     @SerializedName("context_header")
     @Expose

@@ -9,7 +9,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public abstract class _GrammarBaseModel {
+public class _GrammarBaseModel {
 
     @SerializedName("content")
     @Expose

@@ -22,12 +22,12 @@ import java.util.ArrayList;
 
 public class MainPageAdapter extends RecyclerView.Adapter<MainPageAdapter.MainPageViewHolder> implements OnItemClickListener {
 
-    private ArrayList<MainPageData> mainPageData;
+    private MainPageData[] mainPageData;
     private LayoutInflater layoutInflater;
     private Context context;
 
 
-    public void setMainPageData(ArrayList<MainPageData> mainPageData) {
+    public void setMainPageData(MainPageData[] mainPageData) {
         this.mainPageData = mainPageData;
         notifyDataSetChanged();
     }
@@ -51,13 +51,13 @@ public class MainPageAdapter extends RecyclerView.Adapter<MainPageAdapter.MainPa
 
     @Override
     public void onBindViewHolder(@NonNull MainPageViewHolder holder, int i) {
-        holder.cardMainContentBinding.setModel(mainPageData.get(i));
+        holder.cardMainContentBinding.setModel(mainPageData[i]);
         holder.cardMainContentBinding.setListener(this);
     }
 
     @Override
     public int getItemCount() {
-        return mainPageData != null ? mainPageData.size() : 0;
+        return mainPageData != null ? mainPageData.length : 0;
     }
 
     @Override
