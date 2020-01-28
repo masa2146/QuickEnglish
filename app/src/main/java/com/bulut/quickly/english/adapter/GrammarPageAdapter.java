@@ -12,6 +12,7 @@ import com.bulut.quickly.R;
 import com.bulut.quickly.databinding.CardGrammarContentBinding;
 import com.bulut.quickly.english.adapter.impl.OnItemClickListener;
 import com.bulut.quickly.english.model.adapter.GrammarPageData;
+import com.bulut.quickly.english.model.adapter.MainPageData;
 
 public class GrammarPageAdapter extends RecyclerView.Adapter<GrammarPageAdapter.GrammarPageViewHolder> implements OnItemClickListener {
 
@@ -52,7 +53,8 @@ public class GrammarPageAdapter extends RecyclerView.Adapter<GrammarPageAdapter.
 
     @Override
     public void onItemClick(Object item) {
-        System.out.println("GRAMMAR CLICK ISLEMI");
+        System.out.println((((GrammarPageData) item)).getContentText());
+        //TODO: secilen grammar ile ilgili verileri ilgili urlden cekip sayfada göstermesi gerekiyor.
     }
 
     class GrammarPageViewHolder extends RecyclerView.ViewHolder {
