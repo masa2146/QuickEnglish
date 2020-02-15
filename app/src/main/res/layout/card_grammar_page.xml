@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="model"
-            type="com.bulut.quickly.english.model.adapter.MainPageData" />
+            type="com.bulut.quickly.english.model.adapter.GrammarPageData" />
 
         <variable
             name="listener"
@@ -44,7 +43,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="3"
                     android:contentDescription="@string/todo"
-                    bind:imageResource="@{model.contentImage}" />
+                    android:imageResource="@{model.contentImage}" />
 
                 <TextView
                     android:id="@+id/content_header"
@@ -64,4 +63,5 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
+
 </layout>

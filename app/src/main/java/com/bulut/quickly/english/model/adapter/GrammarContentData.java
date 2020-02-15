@@ -6,16 +6,16 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author Fatih Bulut
- * This class is for card_news_page.xml file.
+ * This class is for card_grammar_content.xml file.
  */
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewPageData {
+public class GrammarContentData {
 
     private int contentImage;
     private String contextHeader;
     private String contentText;
+
 
 }

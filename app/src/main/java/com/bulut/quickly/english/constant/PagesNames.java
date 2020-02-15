@@ -68,12 +68,12 @@ public class PagesNames {
     };
 
     public static final PodcastPageData[] podcastPageDataArray = new PodcastPageData[]{
-            new PodcastPageData(R.drawable.profile_img, "Podcast level 1", "Listen level 1 podcast", PodcastType.PODCAST_LEVEL_1),
-            new PodcastPageData(R.drawable.profile_img, "Podcast level 2", "Listen level 2 podcast", PodcastType.PODCAST_LEVEL_2),
-            new PodcastPageData(R.drawable.profile_img, "Podcast level 3", "Listen level 3 podcast", PodcastType.PODCAST_LEVEL_3),
-            new PodcastPageData(R.drawable.profile_img, "Podcast level business", "Listen level business podcast", PodcastType.PODCAST_LEVEL_BUSINESS),
-            new PodcastPageData(R.drawable.profile_img, "Podcast voice of America part 1", "Listen level voice of America podcast", PodcastType.PODCAST_VOA_1),
-            new PodcastPageData(R.drawable.profile_img, "Podcast voice of America part 2", "Listen level voice of America podcast", PodcastType.PODCAST_VOA_2),
+            new PodcastPageData(R.drawable.profile_img, "Podcast level 1", "Listen level 1 podcast", PodcastType.PODCAST_LEVEL_1, ResponseType.PODCAST_LEVEL),
+            new PodcastPageData(R.drawable.profile_img, "Podcast level 2", "Listen level 2 podcast", PodcastType.PODCAST_LEVEL_2, ResponseType.PODCAST_LEVEL),
+            new PodcastPageData(R.drawable.profile_img, "Podcast level 3", "Listen level 3 podcast", PodcastType.PODCAST_LEVEL_3, ResponseType.PODCAST_LEVEL),
+            new PodcastPageData(R.drawable.profile_img, "Podcast level business", "Listen level business podcast", PodcastType.PODCAST_LEVEL_BUSINESS, ResponseType.PODCAST_LEVEL),
+            new PodcastPageData(R.drawable.profile_img, "Podcast voice of America part 1", "Listen level voice of America podcast", PodcastType.PODCAST_VOA_1, ResponseType.PODCAST_VOA),
+            new PodcastPageData(R.drawable.profile_img, "Podcast voice of America part 2", "Listen level voice of America podcast", PodcastType.PODCAST_VOA_2, ResponseType.PODCAST_VOA),
     };
 
 

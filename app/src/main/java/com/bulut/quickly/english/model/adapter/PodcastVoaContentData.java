@@ -6,16 +6,15 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author Fatih Bulut
- * This class is for card_news_page.xml file.
+ * This class is for card_podcast_voa_content.xml file.
  */
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewPageData {
+public class PodcastVoaContentData {
 
     private int contentImage;
     private String contextHeader;
     private String contentText;
-
+    private String audioUrl;
 }

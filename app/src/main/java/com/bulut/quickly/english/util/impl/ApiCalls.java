@@ -13,7 +13,7 @@ import retrofit2.http.Url;
 public interface ApiCalls<T> {
 
     @GET
-    Call<_GrammarBaseModel> getGrammar(@Url String url, @Query("page") Integer... page);
+    Call<_GrammarBaseModel> getGrammar(@Url String url, @Query("page") int page);
 
     @GET
     Call<_News> getNews(@Url String url, @Query("page") int page);

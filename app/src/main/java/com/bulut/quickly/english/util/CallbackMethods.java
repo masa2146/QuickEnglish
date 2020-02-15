@@ -21,9 +21,8 @@ public class CallbackMethods<T> {
     private String url = "";
 
 
-    public CallbackMethods(APICallBackListener<T> apiCallBackListener, ResponseType responseType) {
+    public CallbackMethods(APICallBackListener<T> apiCallBackListener) {
         this.apiCallBackListener = apiCallBackListener;
-        this.responseType = responseType;
     }
 
     @SuppressWarnings("unchecked")
@@ -45,9 +44,10 @@ public class CallbackMethods<T> {
         }
     }
 
-    public void callData(String url ,int page) {
+    public void callData(ResponseType responseType,String url ,int page) {
         this.page = page;
         this.url = url;
+        this.responseType = responseType;
         setResponseType(responseType);
         call.enqueue(new Callback<T>() {
 

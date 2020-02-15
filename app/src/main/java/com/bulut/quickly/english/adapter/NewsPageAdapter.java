@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bulut.quickly.R;
-import com.bulut.quickly.databinding.CardNewsContentBinding;
+import com.bulut.quickly.databinding.CardNewsPageBinding;
 import com.bulut.quickly.english.adapter.impl.OnItemClickListener;
 import com.bulut.quickly.english.model.adapter.NewPageData;
 
@@ -36,15 +36,15 @@ public class NewsPageAdapter extends RecyclerView.Adapter<NewsPageAdapter.NewsPa
         if (layoutInflater != null) {
             layoutInflater = LayoutInflater.from(parent.getContext());
         }
-        CardNewsContentBinding cardNewsContentBinding =
-                DataBindingUtil.inflate(layoutInflater, R.layout.card_news_content, parent, false);
-        return new NewsPageViewHolder(cardNewsContentBinding);
+        CardNewsPageBinding binding =
+                DataBindingUtil.inflate(layoutInflater, R.layout.card_news_page, parent, false);
+        return new NewsPageViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull NewsPageViewHolder holder, int i) {
-        holder.cardNewsContentBinding.setModel(newsPageData.get(i));
-        holder.cardNewsContentBinding.setListener(this);
+        holder.binding.setModel(newsPageData.get(i));
+        holder.binding.setListener(this);
     }
 
     @Override
@@ -58,11 +58,11 @@ public class NewsPageAdapter extends RecyclerView.Adapter<NewsPageAdapter.NewsPa
     }
 
     public class NewsPageViewHolder extends RecyclerView.ViewHolder {
-        private CardNewsContentBinding cardNewsContentBinding;
+        private CardNewsPageBinding binding;
 
-        public NewsPageViewHolder(@NonNull CardNewsContentBinding cardNewsContentBinding) {
-            super(cardNewsContentBinding.getRoot());
-            this.cardNewsContentBinding = cardNewsContentBinding;
+        public NewsPageViewHolder(@NonNull CardNewsPageBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 }

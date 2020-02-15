@@ -14,20 +14,33 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bulut.quickly.R;
 import com.bulut.quickly.databinding.FragmentMainGrammarBinding;
+import com.bulut.quickly.english.adapter.GrammarContentAdapter;
 import com.bulut.quickly.english.adapter.GrammarPageAdapter;
+import com.bulut.quickly.english.constant.GrammarType;
 import com.bulut.quickly.english.constant.PagesNames;
 import com.bulut.quickly.english.constant.ResponseType;
+import com.bulut.quickly.english.model.adapter.GrammarContentData;
+import com.bulut.quickly.english.model.grammar.GrammarBaseModel;
 import com.bulut.quickly.english.model.grammar.retro._GrammarBaseModel;
 import com.bulut.quickly.english.util.CallbackMethods;
 import com.bulut.quickly.english.util.impl.APICallBackListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Response;
 
+/**
+ * @author Fatih Bulut
+ * */
 public class MainGrammarFragment extends Fragment implements APICallBackListener<_GrammarBaseModel> {
 
     private View view;
+    private RecyclerView recyclerView;
     private FragmentMainGrammarBinding binding;
+    private CallbackMethods<_GrammarBaseModel> callbackMethods;
+    private ArrayList<GrammarContentData> contentData;
 
     public MainGrammarFragment() {
     }
@@ -51,31 +64,77 @@ public class MainGrammarFragment extends Fragment implements APICallBackListener
         init();
     }
 
-    @SuppressWarnings("unchecked")
-    private void selectPage(ResponseType responseType, int page) {
-        CallbackMethods callbackMethods = new CallbackMethods(this, responseType);
-        callbackMethods.callData(PagesNames.GRAMMAR_ADJECTIVES_WITH_PAGE, page);
+    private void init() {
+
+        contentData = new ArrayList<>();
+
+        //noinspection unchecked
+        callbackMethods = new CallbackMethods(this);
+
+        recyclerView = binding.mainGrammar;
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        recyclerView.setHasFixedSize(true);
+
+        initHomePage();
+    }
+
+    private void initHomePage() {
+        GrammarPageAdapter grammarPageAdapter = new GrammarPageAdapter();
+        grammarPageAdapter.setMainView(this);
+        grammarPageAdapter.setGrammarPageData(PagesNames.grammarPageDataArray);
+
+        recyclerView.setAdapter(grammarPageAdapter);
+    }
+
+    public void getDataByGrammarType(ResponseType responseType, GrammarType grammarType, int page) {
+        String tempUrl = "";
+        switch (grammarType) {
+            case ADJECTIVES:
+                tempUrl = PagesNames.GRAMMAR_ADJECTIVES_WITH_PAGE;
+                break;
+            case ADVERBS:
+                tempUrl = PagesNames.GRAMMAR_ADVERBS_WITH_PAGE;
+                break;
+            case NOUNS:
+                tempUrl = PagesNames.GRAMMAR_NOUNS_WITH_PAGE;
+                break;
+            case PREPOSITIONS:
+                tempUrl = PagesNames.GRAMMAR_PREPOSTIONS_WITH_PAGE;
+                break;
+            case PRONOUNS:
+                tempUrl = PagesNames.GRAMMAR_PRONOUNS_WITH_PAGE;
+                break;
+            case VERBS:
+                tempUrl = PagesNames.GRAMMAR_VERBS_WITH_PAGE;
+                break;
+        }
+        callbackMethods.callData(responseType, "grammar/" + tempUrl, page);
     }
 
     @Override
     public void onResponse(Call<_GrammarBaseModel> call, Response<_GrammarBaseModel> response) {
-
+        assert response.body() != null;
+        convertToContentDataFromBaseModel(response.body().getContent());
+        this.setContentDataToAdapter();
     }
 
     @Override
     public void onFailure(Call<_GrammarBaseModel> call, Throwable t) {
-
+        System.out.println("GRAMMAR HATASI VAR " + t.getMessage());
     }
 
-    private void init() {
-        RecyclerView recyclerView = binding.mainGrammar;
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setHasFixedSize(true);
+    private void convertToContentDataFromBaseModel(List<GrammarBaseModel> baseModels) {
+        for (GrammarBaseModel model : baseModels) {
+            this.contentData.add(new GrammarContentData(R.drawable.profile_img, model.getContext_header(), model.getContext_text()));
+            System.out.println("MODELLER " + model.getContext_header());
+        }
+    }
 
-        GrammarPageAdapter grammarPageAdapter = new GrammarPageAdapter();
-        grammarPageAdapter.setContext(view.getContext());
-        grammarPageAdapter.setGrammarPageData(PagesNames.grammarPageDataArray);
+    private void setContentDataToAdapter() {
+        GrammarContentAdapter grammarContentAdapter = new GrammarContentAdapter();
+        grammarContentAdapter.setMainView(this);
+        grammarContentAdapter.setGrammarContentData(this.contentData.toArray(new GrammarContentData[contentData.size()]));
 
-        recyclerView.setAdapter(grammarPageAdapter);
+        recyclerView.setAdapter(grammarContentAdapter);
     }
 }

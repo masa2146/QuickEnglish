@@ -38,8 +38,8 @@ public class MainNewsFragment extends Fragment implements APICallBackListener<_N
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        CallbackMethods<_News> callbackMethods = new CallbackMethods<>(this, ResponseType.NEWS);
-        callbackMethods.callData("",1);
+        CallbackMethods<_News> callbackMethods = new CallbackMethods<>(this);
+        callbackMethods.callData(ResponseType.NEWS,"",1);
     }
 
     @Override

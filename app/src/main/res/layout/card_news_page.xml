@@ -6,7 +6,7 @@
 
         <variable
             name="model"
-            type="com.bulut.quickly.english.model.adapter.GrammarContentData" />
+            type="com.bulut.quickly.english.model.adapter.NewPageData" />
 
         <variable
             name="listener"
@@ -63,5 +63,5 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
-</layout>
 
+</layout>

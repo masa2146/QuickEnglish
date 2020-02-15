@@ -10,14 +10,12 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bulut.quickly.R;
-import com.bulut.quickly.databinding.CardMainContentBinding;
+import com.bulut.quickly.databinding.CardMainPageBinding;
 import com.bulut.quickly.english.adapter.impl.OnItemClickListener;
 import com.bulut.quickly.english.model.adapter.MainPageData;
 
-import java.util.ArrayList;
-
 /**
- * @author fatih
+ * @author Fatih Bulut
  */
 
 public class MainPageAdapter extends RecyclerView.Adapter<MainPageAdapter.MainPageViewHolder> implements OnItemClickListener {
@@ -43,16 +41,16 @@ public class MainPageAdapter extends RecyclerView.Adapter<MainPageAdapter.MainPa
         if (layoutInflater == null) {
             layoutInflater = LayoutInflater.from(parent.getContext());
         }
-        CardMainContentBinding cardMainContentBinding =
-                DataBindingUtil.inflate(layoutInflater, R.layout.card_main_content, parent, false);
+        CardMainPageBinding binding =
+                DataBindingUtil.inflate(layoutInflater, R.layout.card_main_page, parent, false);
 
-        return new MainPageViewHolder(cardMainContentBinding);
+        return new MainPageViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MainPageViewHolder holder, int i) {
-        holder.cardMainContentBinding.setModel(mainPageData[i]);
-        holder.cardMainContentBinding.setListener(this);
+        holder.binding.setModel(mainPageData[i]);
+        holder.binding.setListener(this);
     }
 
     @Override
@@ -78,11 +76,11 @@ public class MainPageAdapter extends RecyclerView.Adapter<MainPageAdapter.MainPa
 
     class MainPageViewHolder extends RecyclerView.ViewHolder {
 
-        private CardMainContentBinding cardMainContentBinding;
+        private CardMainPageBinding binding;
 
-        MainPageViewHolder(@NonNull CardMainContentBinding cardMainContentBinding) {
-            super(cardMainContentBinding.getRoot());
-            this.cardMainContentBinding = cardMainContentBinding;
+        MainPageViewHolder(@NonNull CardMainPageBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 
